@@ -1,11 +1,18 @@
+@font-face {
+    font-family: comicTtf;
+    src: url(../font/hey_comic/Hey\ Comic.ttf)
+}
+
 html, body {
     background-color: #F0F8FF;
+    font-family: comicTtf;
+    letter-spacing: 2px;
 }
 
 img {
   box-shadow: 2px 2px 4px 5px #ccc;
 }
 
-p {
+h1, p {
     text-shadow: 2px 2px 4px #999999;
 }

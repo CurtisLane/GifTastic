@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-    let topics = ['Naruto', 'Dragon Ball Z', 'Akira', 'FMA Brotherhood']
+    let topics = ['Totoro', 'Naruto', 'Dragon Ball Z', 'Akira', 'FMA Brotherhood']
     const displayGifsDiv = $('#displayGifs')
     const buttons = $('#buttons')
     let limit = 10;
