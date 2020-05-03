@@ -1,14 +1,14 @@
 $( document ).ready(function() {
     console.log( "ready!" );
 
-    let topics = ['Naruto', 'Dragon Ball Z', 'Attack On Titan']
+    let topics = ['Naruto', 'Dragon Ball Z', 'Akira', 'FMA Brotherhood']
+    const displayGifsDiv = $('#displayGifs')
+    const buttons = $('#buttons')
 
     // Giphy API AJAX query
-    const api_key = 'T9XxzTKyf5mnTi81SiVMeqKKjtR1TO08'
-    
-
     function displayGifs(){
-
+        
+        const api_key = 'T9XxzTKyf5mnTi81SiVMeqKKjtR1TO08'
         let q = $(this).attr('data-name');
         let queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=' + api_key + '&q=' + q + '&limit=10&offset=0&lang=en'
             
@@ -16,33 +16,31 @@ $( document ).ready(function() {
         url: queryURL,
         method: "GET"
         }).then(function(response) {
-            $('#displayGifs').empty()
+            displayGifsDiv.empty()
             console.log(response)
             let results = response.data
             for (let i = 0; i < results.length; i++){
+                
                 let gifDiv = $('<div>');
                 let rating = results[i].rating;
                 let p = $('<p>').text('Rated: ' + rating);
                 let gifImage = $('<img>')
+
                 gifImage.attr('src', results[i].images.original_still.url)
                 gifImage.attr('data-still', results[i].images.original_still.url)
                 gifImage.attr('data-animate', results[i].images.original.url)
                 gifImage.attr('data-state', 'still')
-                gifImage.addClass('gif')
-
+                gifImage.addClass('gif img-fluid mx-1 my-3')
 
                 gifDiv.append(gifImage);
                 gifDiv.append(p);
-                $('#displayGifs').append(gifDiv);
+
+                displayGifsDiv.append(gifDiv);
             }
             
             $('.gif').on("click", function() {
                 console.log('clicked')
-                // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
                 var state = $(this).attr("data-state");
-                // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-                // Then, set the image's data-state to animate
-                // Else set src to the data-still value
                 if (state === "still") {
                   $(this).attr("src", $(this).attr("data-animate"));
                   $(this).attr("data-state", "animate");
@@ -59,8 +57,8 @@ $( document ).ready(function() {
     
     
 
-    function renderButtons() {
-        $('#buttons').empty()
+    function generateButtons() {
+        buttons.empty()
 
         for (let i = 0; i < topics.length; i++) {
             let btn = $('<button>');
@@ -70,7 +68,7 @@ $( document ).ready(function() {
             btn.text(topics[i].toLowerCase().replace(/\b[a-z]/g, function(txtVal) {
                 return txtVal.toUpperCase();
             }))
-            $('#buttons').append(btn);
+            buttons.append(btn);
         }
     }
 
@@ -81,31 +79,11 @@ $( document ).ready(function() {
 
         topics.push(topic);
 
-        renderButtons();
+        generateButtons();
     })
 
     $(document).on('click', '.topic', displayGifs);
 
-    renderButtons();
-
-    // #buttons -- where buttons will be pushed
-    // #searchForm -- the form with search input
-    // #searchInput -- input element for search
-    // #displayGifs -- div where gifs will be diplayed
-    // #addSearch -- click to search
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    generateButtons();
 
 });
