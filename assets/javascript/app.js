@@ -1,23 +1,21 @@
 $( document ).ready(function() {
-    console.log( "ready!" );
 
     let topics = ['Naruto', 'Dragon Ball Z', 'Akira', 'FMA Brotherhood']
     const displayGifsDiv = $('#displayGifs')
     const buttons = $('#buttons')
+    let limit = 10;
 
     // Giphy API AJAX query
     function displayGifs(){
-        
         const api_key = 'T9XxzTKyf5mnTi81SiVMeqKKjtR1TO08'
-        let q = $(this).attr('data-name');
-        let queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=' + api_key + '&q=' + q + '&limit=10&offset=0&lang=en'
+        const q = $(this).attr('data-name');
+        let queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=' + api_key + '&q=' + q + '&limit='+limit+'&offset=0&lang=en'
             
         $.ajax({
         url: queryURL,
         method: "GET"
         }).then(function(response) {
             displayGifsDiv.empty()
-            console.log(response)
             let results = response.data
             for (let i = 0; i < results.length; i++){
                 let gifDiv = $('<div>');
@@ -37,11 +35,30 @@ $( document ).ready(function() {
                 displayGifsDiv.append(gifDiv);
             }
             let instructions = $('<p>').text('Click or tap an image to start/stop the animation.');
+            
+
+
             displayGifsDiv.prepend(instructions)
 
+
+            // Attempted bonus work: Create a show more button. Button showed up and added more gifs
+            // but changed content of gifs because of 'data-name', let me know if I'm on the right track!
+            /*let showMore = $('<button>')
+            showMore.attr('id', 'showMore')
+            showMore.attr('data-name', q)
+            showMore.text('Show More')
+            console.log(showMore)
+            displayGifsDiv.append(showMore)
+
+            $('#showMore').on('click', function(event){
+                event.preventDefault()
+                limit=limit+10
+                console.log(limit)
+                displayGifs()
+            })*/
+
             
-            $('.gif').on("click", function() {
-                console.log('clicked')
+            $('.gif').on('click', function() {
                 var state = $(this).attr("data-state");
                 if (state === "still") {
                   $(this).attr("src", $(this).attr("data-animate"));
@@ -54,12 +71,15 @@ $( document ).ready(function() {
             
         });
         
+        
+        
     }
 
     
     
 
     function generateButtons() {
+
         buttons.empty()
 
         for (let i = 0; i < topics.length; i++) {
