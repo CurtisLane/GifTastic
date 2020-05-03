@@ -1,0 +1,11 @@
+html, body {
+    background-color: #F0F8FF;
+}
+
+img {
+  box-shadow: 2px 2px 4px 5px #ccc;
+}
+
+p {
+    text-shadow: 2px 2px 4px #999999;
+}
