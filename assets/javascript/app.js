@@ -20,7 +20,6 @@ $( document ).ready(function() {
             console.log(response)
             let results = response.data
             for (let i = 0; i < results.length; i++){
-                
                 let gifDiv = $('<div>');
                 let rating = results[i].rating;
                 let p = $('<p>').text('Rated: ' + rating);
@@ -30,13 +29,16 @@ $( document ).ready(function() {
                 gifImage.attr('data-still', results[i].images.original_still.url)
                 gifImage.attr('data-animate', results[i].images.original.url)
                 gifImage.attr('data-state', 'still')
-                gifImage.addClass('gif img-fluid mx-1 my-3')
+                gifImage.addClass('gif img-fluid')
 
                 gifDiv.append(gifImage);
                 gifDiv.append(p);
 
                 displayGifsDiv.append(gifDiv);
             }
+            let instructions = $('<p>').text('Click or tap an image to start/stop the animation.');
+            displayGifsDiv.prepend(instructions)
+
             
             $('.gif').on("click", function() {
                 console.log('clicked')
