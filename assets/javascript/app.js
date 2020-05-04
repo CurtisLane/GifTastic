@@ -28,7 +28,7 @@ $( document ).ready(function() {
                 gifImage.attr('data-still', results[i].images.original_still.url)
                 gifImage.attr('data-animate', results[i].images.original.url)
                 gifImage.attr('data-state', 'still')
-                gifImage.addClass('gif img-fluid')
+                gifImage.addClass('gif img-fluid mt-1')
 
                 gifDiv.append(gifImage);
                 gifDiv.append(p);
