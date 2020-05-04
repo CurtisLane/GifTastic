@@ -1,6 +1,9 @@
 // Waits till document is fully loaded to run JS
 $( document ).ready(function() {
 
+
+    let previousQ;
+
     // Array storing button values
     let topics = ['Totoro', 'Naruto', 'Dragon Ball Z', 'Akira', 'FMA Brotherhood']
     
@@ -20,8 +23,12 @@ $( document ).ready(function() {
         //  Variable storing data-name from button click, used as search value in URL from Giphy API
         const q = $(this).attr('data-name');
         
+        if (q){
+            previousQ = q;
+        }
+        
         // Giphy API URL
-        let queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=' + api_key + '&q=' + q + '&limit='+limit+'&offset=0&lang=en'
+        let queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=' + api_key + '&q=' + previousQ + '&limit='+limit+'&offset=0&lang=en'
             
         // ajax request to "GET" data from Giphy API
         $.ajax({
@@ -67,13 +74,14 @@ $( document ).ready(function() {
             displayGifsDiv.prepend(instructions)
 
 
-            /* ---------- 
-            Attempted bonus work: Create a show more button. Button showed up and added more gifs
-            but changed content of gifs because of 'data-name', let me know if I'm on the right track!
+            //Attempted bonus work: Create a show more button. Button showed up and added more gifs
+            //but changed content of gifs because of 'data-name', let me know if I'm on the right track!
             
             let showMore = $('<button>')
             showMore.attr('id', 'showMore')
-            showMore.attr('data-name', q)
+            console.log(previousQ)
+            console.log(q)
+            showMore.attr('data-name', previousQ || q)
             showMore.text('Show More')
             console.log(showMore)
             displayGifsDiv.append(showMore)
@@ -84,7 +92,6 @@ $( document ).ready(function() {
                 console.log(limit)
                 displayGifs()
             })
-            ----------*/
 
             // Handler listens for click on a gif
             $('.gif').on('click', function() {
