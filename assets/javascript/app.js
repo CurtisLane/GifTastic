@@ -21,6 +21,7 @@ $( document ).ready(function() {
                 let gifDiv = $('<div>');
                 let rating = results[i].rating;
                 let p = $('<p>').text('Rated: ' + rating);
+                p.addClass('mt-1')
                 let gifImage = $('<img>')
 
                 gifImage.attr('src', results[i].images.original_still.url)
