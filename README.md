@@ -12,7 +12,7 @@ A themed gif generating site using the Giphy API, HTML, CSS, Bootstrap, JavaScri
         * [favicon](.assets/favicon)
             * [favicon.ico](./assets/favicon/favicon.ico)
         * [font](./assets/font)
-            * [Hey Comic](./assets/font/hey_comic/Hey Comic.ttf)
+            * [Hey Comic](./assets/font/hey_comic)
         * [images](./assets/images)
         * [javascript](./assets/javascript)
             * [app.js](./assets/javascript/app.js)
