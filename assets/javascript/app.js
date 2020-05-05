@@ -16,7 +16,7 @@ $( document ).ready(function() {
 
     // Function takes data from Giphy API and displays gifs on page
     function displayGifs(){
-        
+
         // Variable storing API key
         const api_key = 'T9XxzTKyf5mnTi81SiVMeqKKjtR1TO08'
         
@@ -144,9 +144,10 @@ $( document ).ready(function() {
 
     // When green button is pressed, input value is added as a button
     $('#addSearch').on('click', function(event){
-        
+
         // Prevent button from default function
         event.preventDefault();
+       
 
         // Create variable for search input value
         let topic = $('#searchInput').val().trim()
@@ -156,6 +157,7 @@ $( document ).ready(function() {
 
         // Regenerate all buttons with updated topics array
         generateButtons();
+
     })
 
     // Handler listens to click on button, displays gif according to which button is pressed
