@@ -83,6 +83,7 @@ $( document ).ready(function() {
             //but changed content of gifs because of 'data-name', let me know if I'm on the right track!
             
             let showMore = $('<button>')
+            showMore.addClass('btn btn-dark my-5')
             showMore.attr('id', 'showMore')
             showMore.attr('data-name', previousQ || q)
             showMore.text('Show More')
