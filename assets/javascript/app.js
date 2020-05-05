@@ -23,9 +23,14 @@ $( document ).ready(function() {
         //  Variable storing data-name from button click, used as search value in URL from Giphy API
         const q = $(this).attr('data-name');
         
-        if (q){
+        if (q) {
+            if (previousQ !== q) {
+              limit = 10
+            } else {
+              limit += 10
+            }
             previousQ = q;
-        }
+          }
         
         // Giphy API URL
         let queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=' + api_key + '&q=' + previousQ + '&limit='+limit+'&offset=0&lang=en'
@@ -79,8 +84,6 @@ $( document ).ready(function() {
             
             let showMore = $('<button>')
             showMore.attr('id', 'showMore')
-            console.log(previousQ)
-            console.log(q)
             showMore.attr('data-name', previousQ || q)
             showMore.text('Show More')
             console.log(showMore)
@@ -89,7 +92,6 @@ $( document ).ready(function() {
             $('#showMore').on('click', function(event){
                 event.preventDefault()
                 limit=limit+10
-                console.log(limit)
                 displayGifs()
             })
 
