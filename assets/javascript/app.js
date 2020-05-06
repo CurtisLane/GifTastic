@@ -1,11 +1,10 @@
 // Waits till document is fully loaded to run JS
 $( document ).ready(function() {
 
-
     let previousQ;
 
     // Array storing button values
-    let topics = ['Totoro', 'Naruto', 'Dragon Ball Z', 'Akira', 'FMA Brotherhood']
+    let topics = ['Totoro', 'Naruto', 'Dragon Ball Z', 'Akira', 'FMA Brotherhood', 'One Punch Man']
     
     // Commonly used jQueryS
     const displayGifsDiv = $('#displayGifs')
@@ -23,12 +22,19 @@ $( document ).ready(function() {
         //  Variable storing data-name from button click, used as search value in URL from Giphy API
         const q = $(this).attr('data-name');
         
+        // The following if statement was provided by the instructor, Jim, to help me complete the function for the show more button.
+        
+        // Checks if q is truthy
         if (q) {
+            // If q has value, check if button pressed is the same as the last one pressed
             if (previousQ !== q) {
-              limit = 10
+                // If button with a new data-name is pressed, limit is reset to 10
+                limit = 10
             } else {
-              limit += 10
+                // If show more button is pressed add 10 to limit
+                limit += 10
             }
+            // Set data-name of show more button equal to 
             previousQ = q;
           }
         
@@ -39,7 +45,9 @@ $( document ).ready(function() {
         $.ajax({
         url: queryURL,
         method: "GET"
-        }).then(function(response) { // Function gets data from Giphy API, converts it into HTML and displays it on page using jQuery
+        
+        // Function gets data from Giphy API, converts it into HTML and displays it on page using jQuery
+        }).then(function(response) { 
             
             // Empty all gifs before displaying more
             displayGifsDiv.empty()
@@ -78,18 +86,15 @@ $( document ).ready(function() {
             // Add instructions to page when gifs are loaded
             displayGifsDiv.prepend(instructions)
 
-
-            //Attempted bonus work: Create a show more button. Button showed up and added more gifs
-            //but changed content of gifs because of 'data-name', let me know if I'm on the right track!
-            
+            // Generate and render show more button
             let showMore = $('<button>')
             showMore.addClass('btn btn-dark my-5')
             showMore.attr('id', 'showMore')
             showMore.attr('data-name', previousQ || q)
             showMore.text('Show More')
-            console.log(showMore)
             displayGifsDiv.append(showMore)
 
+            // Handler listens for show more button click
             $('#showMore').on('click', function(event){
                 event.preventDefault()
                 limit=limit+10
@@ -147,7 +152,6 @@ $( document ).ready(function() {
 
         // Prevent button from default function
         event.preventDefault();
-       
 
         // Create variable for search input value
         let topic = $('#searchInput').val().trim()
