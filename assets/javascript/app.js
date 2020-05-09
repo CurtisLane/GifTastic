@@ -162,6 +162,9 @@ $( document ).ready(function() {
         // Regenerate all buttons with updated topics array
         generateButtons();
 
+        // Clear input value after new button is created
+        $('#searchInput').val('')
+
     })
 
     // Handler listens to click on button, displays gif according to which button is pressed
