@@ -17,6 +17,9 @@ A themed gif generating site using the Giphy API, HTML, CSS, Bootstrap, JavaScri
         * [javascript](./assets/javascript)
             * [app.js](./assets/javascript/app.js)
 
+            ![picture](assets/images/gifTastic.jpg)
+
+
 ### Functions: 
     1. Buttons at top of page can be clicked or tapped to display 10 gifs associated with the button value.
         1a. Gifs displayed come from Giphy API.
